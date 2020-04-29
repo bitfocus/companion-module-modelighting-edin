@@ -1,0 +1,20 @@
+{
+	"name": "eDin",
+	"version": "0.0.1",
+	"api_version": "1.0.0",
+	"keywords": [
+		"Protocol",
+		"Lighting Controller",
+		"Software"
+	],
+	"manufacturer": "MODE lighting",
+	"product": "eDin telnet",
+	"shortname": "eDin",
+	"description": "eDin plugin for Companion",
+	"main": "eDin.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Noah Callaway",
+	"license": "MIT"
+}
