@@ -1,4 +1,4 @@
-var tcp = require('../../tcp');
+var tcp = require('../../telnet');
 var instance_skel = require('../../instance_skel');
 
 var debug;
@@ -19,10 +19,12 @@ class instance extends instance_skel {
 				label: 'Load Scene',
 				options: [
 					{
-						type: 'number',
+						type: 'textinput',
 						label: 'Number',
 						id: 'scene',
-						default: '1'
+						default: '1',
+						regex: this.REGEX_NUMBER
+						
 					}
 				]
 			},
@@ -30,24 +32,25 @@ class instance extends instance_skel {
 				label: 'Load Scene Time and Level',
 				options: [
 					{
-						type: 'number',
+						type: 'textinput',
 						label: 'Number',
 						id: 'scene',
-						default: '1'
+						default: '1',
+						regex: this.REGEX_NUMBER
 					},
 					{
-						type: 'number',
+						type: 'textinput',
 						label: 'Time (ms)',
 						id: 'time',
-						default: '1000'
+						default: '1000',
+						regex: this.REGEX_NUMBER
 					},
 					{
-						type: 'number',
+						type: 'textinput',
 						label: 'Level (%)',
 						id: 'level',
 						default: '100',
-						min: 1,
-						max: 100
+						regex: this.REGEX_PERCENT
 					}
 				]
 			}
@@ -79,7 +82,7 @@ class instance extends instance_skel {
 					cmd = cmd + 'L' + level;
 				}
 				cmd = cmd + 'GO';
-				this.log('Test Debug' + cmd);
+				this.debug('Test Debug' + cmd);
 				break;
 		}
 	
@@ -88,7 +91,7 @@ class instance extends instance_skel {
 			this.debug('sending tcp', cmd, "to", this.config.host);
 	
 			if (this.socket !== undefined && this.socket.connected) {
-				this.socket.send(cmd);
+				this.socket.write(cmd);
 			}
 			else {
 				this.debug('Socket not connected :(');
@@ -148,25 +151,26 @@ class instance extends instance_skel {
 		}
 
 		if (this.config.host) {
+			this.status(this.STATUS_WARNING, 'Connecting');
 			this.socket = new tcp(this.config.host, this.config.port);
 
 			this.socket.on('status_change', (status, message) => {
-				if(status !== this.STATUS_OK) {
-					this.status(status, message);
-				}
+				this.status(status, message);
 			});
 
 			this.socket.on('error', (err) => {
 				this.debug("Network error", err);
+				this.status(this.STATUS_ERROR, err);
 				this.log('error',"Network error: " + err.message);
 			});
 
 			this.socket.on('connect', () => {
 				this.debug("Connected");
+				this.status(this.STATUS_OK);
 				this.log("Connection Established");
 			});
 
-			this.socket.on('data', this.debug(data));
+			this.socket.on('data', (data) => this.debug("I GOT: " + data));
 
 
 		}
