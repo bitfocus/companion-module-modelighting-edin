@@ -24,7 +24,6 @@ class instance extends instance_skel {
 						id: 'scene',
 						default: '1',
 						regex: this.REGEX_NUMBER
-						
 					}
 				]
 			},
@@ -42,14 +41,14 @@ class instance extends instance_skel {
 						type: 'textinput',
 						label: 'Time (ms)',
 						id: 'time',
-						default: '1000',
+						default: 1000,
 						regex: this.REGEX_NUMBER
 					},
 					{
 						type: 'textinput',
 						label: 'Level (%)',
 						id: 'level',
-						default: '100',
+						default: 100,
 						regex: this.REGEX_PERCENT
 					}
 				]
@@ -107,7 +106,7 @@ class instance extends instance_skel {
 				id: 'info',
 				width: 12,
 				label: 'Information',
-				value: 'I have no clue what to put here'
+				value: 'Module to Control Mode Lighting eDin NPU running firmware version 1.x.x'
 			},
 			{
 				type: 'textinput',
@@ -117,11 +116,13 @@ class instance extends instance_skel {
 				regex: this.REGEX_IP
 			},
 			{
-				type: 'number',
+				type: 'textinput',
 				id: 'port',
 				label: 'Command Port',
 				width: 6,
-				default: "22",
+				default: '22',
+				regex: this.REGEX_PORT
+
 			}
 		];
 	}
@@ -161,7 +162,7 @@ class instance extends instance_skel {
 			this.socket.on('error', (err) => {
 				this.debug("Network error", err);
 				this.status(this.STATUS_ERROR, err);
-				this.log('error',"Network error: " + err.message);
+				this.log('error', "Network error: " + err.message);
 			});
 
 			this.socket.on('connect', () => {
@@ -171,7 +172,6 @@ class instance extends instance_skel {
 			});
 
 			this.socket.on('data', (data) => this.debug("I GOT: " + data));
-
 
 		}
 	}
