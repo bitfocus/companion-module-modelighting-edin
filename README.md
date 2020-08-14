@@ -1,4 +1,3 @@
-# companion-module-eDinv1
-
-Companion Module to Control eDin v1 via telnet
+# companion-module-eDin
+See HELP.md and LICENSE
 
