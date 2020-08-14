@@ -2,12 +2,13 @@
 
 This module allows scenes on MODE Lighting NPU running firmware up to v
 
-Note: This has been tested with NPU running Firmware v1.3.x.x
-
+Note: This has been tested with NPU running Firmware v1.3.x.x and not newer eDin+ modules.
 ## Configuration
 
 Make sure remote control is enabled on the eDin web GUI.
+
 Settings -> Network Services -> Enable remote control
+
 Default port is 22
 
 ## Actions

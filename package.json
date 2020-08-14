@@ -3,15 +3,22 @@
 	"version": "1.0.0",
 	"api_version": "1.0.0",
 	"keywords": [
-		"Lighting Controller"
+		"Lighting"
 	],
-	"manufacturer": "MODE lighting",
+	"manufacturer": "MODE Lighting",
 	"product": "eDin NPU",
 	"shortname": "eDin",
 	"description": "eDin NPU plugin for Companion",
 	"main": "eDin.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bitfocus/companion-module-modelighting-edin"
+	},
+	"bugs": {
+		"url": "git+https://github.com/bitfocus/companion-module-modelighting-edin/issues"
 	},
 	"author": "Noah Callaway <noah@thecallaways.net>",
 	"license": "MIT"

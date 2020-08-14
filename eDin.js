@@ -106,7 +106,7 @@ class instance extends instance_skel {
 				id: 'info',
 				width: 12,
 				label: 'Information',
-				value: 'Module to Control Mode Lighting eDin NPU running firmware version 1.x.x'
+				value: 'Module to Control Mode Lighting eDin NPU'
 			},
 			{
 				type: 'textinput',
