@@ -19,11 +19,12 @@ class instance extends instance_skel {
 				label: 'Load Scene',
 				options: [
 					{
-						type: 'textinput',
+						type: 'number',
 						label: 'Number',
 						id: 'scene',
-						default: '1',
-						regex: this.REGEX_NUMBER
+						default: 1,
+						min: 0,
+						max: 9999
 					}
 				]
 			},
@@ -31,25 +32,28 @@ class instance extends instance_skel {
 				label: 'Load Scene Time and Level',
 				options: [
 					{
-						type: 'textinput',
+						type: 'number',
 						label: 'Number',
 						id: 'scene',
-						default: '1',
-						regex: this.REGEX_NUMBER
+						default: 1,
+						min: 0,
+						max: 9999
 					},
 					{
-						type: 'textinput',
+						type: 'number',
 						label: 'Time (ms)',
 						id: 'time',
 						default: 1000,
-						regex: this.REGEX_NUMBER
+						min: 1,
+						max: 9999
 					},
 					{
-						type: 'textinput',
+						type: 'number',
 						label: 'Level (%)',
 						id: 'level',
 						default: 100,
-						regex: this.REGEX_PERCENT
+						min: 1,
+						max: 100
 					}
 				]
 			}
@@ -64,15 +68,16 @@ class instance extends instance_skel {
 		switch (action.action) {
 		
 			case 'loadScene':
-				var scene = parseInt(opt.scene)
+				//var scene = parseInt(opt.scene)
+				var scene = opt.scene;
 				cmd = 'SCENE' + scene + 'GO';
 				this.log('Test Debug' + cmd);
 				break;
 	
 			case 'loadSceneAdv':
-				var scene = parseInt(opt.scene);
-				var time = parseInt(opt.time);
-				var level = parseInt(opt.level);
+				var scene = opt.scene;
+				var time = opt.time;
+				var level = opt.level;
 				cmd = 'SCENE' + scene;
 				if (time !== ''){
 					cmd = cmd + 'T' + time;
@@ -81,13 +86,12 @@ class instance extends instance_skel {
 					cmd = cmd + 'L' + level;
 				}
 				cmd = cmd + 'GO';
-				this.debug('Test Debug' + cmd);
 				break;
 		}
 	
 		if (cmd !== undefined) {
 	
-			this.debug('sending tcp', cmd, "to", this.config.host);
+			this.debug('sending tcp ', cmd, ' to', this.config.host);
 	
 			if (this.socket !== undefined && this.socket.connected) {
 				this.socket.write(cmd);
@@ -171,7 +175,7 @@ class instance extends instance_skel {
 				this.log("Connection Established");
 			});
 
-			this.socket.on('data', (data) => this.debug("I GOT: " + data));
+			//this.socket.on('data', (data) => this.debug("I GOT: " + data));
 
 		}
 	}
