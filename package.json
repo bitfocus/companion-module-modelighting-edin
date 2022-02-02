@@ -15,11 +15,12 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bitfocus/companion-module-modelighting-edin"
+		"url": "git+https://github.com/bitfocus/companion-module-modelighting-edin.git"
 	},
 	"bugs": {
-		"url": "git+https://github.com/bitfocus/companion-module-modelighting-edin/issues"
+		"url": "https://github.com/bitfocus/companion-module-modelighting-edin/issues"
 	},
 	"author": "Noah Callaway <noah@thecallaways.net>",
-	"license": "MIT"
+	"license": "MIT",
+	"homepage": "https://github.com/bitfocus/companion-module-modelighting-edin#readme"
 }
